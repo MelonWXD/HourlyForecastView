@@ -67,8 +67,7 @@ public class MainActivity extends AppCompatActivity {
         JsonArray ja = jo.getAsJsonArray("hourly");
 
         for (JsonElement element : ja) {
-            HourlyWeatherBean bean = gson.fromJson(element, new TypeToken<HourlyWeatherBean>() {
-            }.getType());
+            HourlyWeatherBean bean = gson.fromJson(element, HourlyWeatherBean.class);
             hourlyWeatherList.add(bean);
         }
 

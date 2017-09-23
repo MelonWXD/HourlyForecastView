@@ -250,19 +250,8 @@ public class HourlyForecastView extends View implements ScrollWatcher {
             mHeight = defHeightPixel + paddingT + paddingB;
         }
 
-        //todo why == 0?  widthMode==0?
-        if (mWidth == 0 && mHeight == 0) {
-            mWidth = defWidthPixel + paddingL + paddingR;
-            mHeight = defHeightPixel + paddingT + paddingB;
-        }
-
-//        mWidth += paddingL + 0;//执行2遍导致叠加
-//        mHeight += paddingT + paddingB;
-
-
         //设置视图的大小
         setMeasuredDimension(mWidth, mHeight);
-
 
     }
 
@@ -270,8 +259,6 @@ public class HourlyForecastView extends View implements ScrollWatcher {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-        //drawCircle
         if (hourlyWeatherList.size() != 0) {
             drawLines(canvas);
             drawBitmaps(canvas);
@@ -420,7 +407,6 @@ public class HourlyForecastView extends View implements ScrollWatcher {
         //画底线
         canvas.drawLine(paddingL, baseLineHeight, mWidth - paddingR, baseLineHeight, baseLinePaint);
 
-
         for (int i = 0; i < hourlyWeatherList.size(); i++) {
             float temp = Integer.parseInt(hourlyWeatherList.get(i).getTemperature());
 
@@ -438,9 +424,13 @@ public class HourlyForecastView extends View implements ScrollWatcher {
 
             //画温度值  y轴是文本基线 故除2处理
             canvas.drawText(hourlyWeatherList.get(i).getTemperature(), w, h - textSize / 2f, textPaint);
-            //画时间轴
+            //画时间
             canvas.drawText(hourlyWeatherList.get(i).getTime(), w, baseLineHeight + textSize, textPaint);
         }
+
+    }
+
+    private void drawCircles(Canvas canvas){
 
     }
 
